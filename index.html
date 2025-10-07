@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawai Bandh Safari - Land of Leopards</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #fef3c7, #d1fae5);
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(to right, #92400e, #78350f);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-brand svg {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .nav-links button:hover {
+            color: #fbbf24;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .mobile-menu button:hover {
+            background: #92400e;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 1rem;
+            z-index: 10;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-content .subtitle {
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: #d97706;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 9999px;
+            font-size: 1.125rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #b45309;
+            transform: scale(1.05);
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .card svg {
+            width: 3rem;
+            height: 3rem;
+            color: #d97706;
+            margin: 0 auto 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .card p {
+            color: #6b7280;
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .service-img {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #d97706;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: bold;
+        }
+
+        .photo-count {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .service-content p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .amenity-tag {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        .info-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .btn-book {
+            width: 100%;
+            background: #d97706;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-book:hover {
+            background: #b45309;
+        }
+
+        /* Gallery */
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Forms */
+        .form-input {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #78350f, #92400e);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section {
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section p {
+            font-size: 0.875rem;
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            background: white;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-icon svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #92400e;
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-admin {
+            background: #92400e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-admin:hover {
+            background: #78350f;
+        }
+
+        /* Admin */
+        .admin-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-btn {
+            color: white;
+            padding: 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.25rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .admin-btn:hover {
+            opacity: 0.9;
+        }
+
+        .item-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .item-card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .item-image-preview {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .item-content {
+            display: flex;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .btn-edit {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-edit:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-delete {
+            background: #dc2626;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-delete:hover {
+            background: #b91c1c;
+        }
+
+        .btn-logout {
+            background: #dc2626;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+
+        .btn-logout:hover {
+            background: #b91c1c;
+        }
+
+        /* Utilities */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-2 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 3rem;
+        }
+
+        .py-12 {
+            padding: 6rem 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                height: 500px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.125rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                height: 700px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="nav-brand">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
+                    </path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>Jawai Bandh Safari</span>
+            </div>
+            <div class="nav-links">
+                <button onclick="showTab('home')">Home</button>
+                <button onclick="showTab('hotels')">Hotels</button>
+                <button onclick="showTab('safaris')">Safaris</button>
+                <button onclick="showTab('cameramen')">Cameramen</button>
+                <button onclick="showTab('gallery')">Gallery</button>
+                <button onclick="showTab('contact')">Contact</button>
+                <button onclick="showTab('admin')"
+                    style="background:#92400e;padding:0.5rem 1rem;border-radius:0.5rem">Admin</button>
+            </div>
+            <button class="menu-btn" onclick="toggleMenu()">
+                <svg style="width:1.5rem;height:1.5rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu container">
+            <button onclick="showTab('home'); toggleMenu();">Home</button>
+            <button onclick="showTab('hotels'); toggleMenu();">Hotels</button>
+            <button onclick="showTab('safaris'); toggleMenu();">Safaris</button>
+            <button onclick="showTab('cameramen'); toggleMenu();">Cameramen</button>
+            <button onclick="showTab('gallery'); toggleMenu();">Gallery</button>
+            <button onclick="showTab('contact'); toggleMenu();">Contact</button>
+            <button onclick="showTab('admin'); toggleMenu();"
+                style="background:#92400e;padding:0.75rem 1rem;border-radius:0.5rem;margin-top:0.5rem">Admin
+                Panel</button>
+        </div>
+    </nav>
+
+    <main id="mainContent"></main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Jawai Bandh Safari</h3>
+                    <p>Experience the wild, live the adventure!</p>
+                    <p>Land of Leopards & Wilderness</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="https://facebook.com" target="_blank" class="social-icon">
+                            <svg style="color:#1877f2" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-icon">
+                            <svg style="color:#e4405f" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/919876543210" target="_blank" class="social-icon">
+                            <svg style="color:#25d366" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 Jawai Bandh, Pali, Rajasthan</p>
+                    <p>📞 +91 98765 43210</p>
+                    <p>✉️ info@jawaibandh.com</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p style="font-size:0.875rem">© 2025 Jawai Bandh Safari. All rights reserved.</p>
+                <button onclick="showTab('admin')" class="btn-admin">
+                    <span>⚙️</span>
+                    <span>Admin Panel</span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        let selectedService = null;
+        let isAdmin = false;
+        let slideInterval = null;
+
+        const heroImages = [
+            'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=1200',
+            'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=1200',
+            'https://images.unsplash.com/photo-1456926631375-92c8ce872def?w=1200'
+        ];
+
+        let data = {
+            hotels: [
+                { id: 1, name: 'Leopard Den Resort', price: 5000, images: ['https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800'], description: 'Luxury resort with leopard view', amenities: ['AC', 'WiFi', 'Pool', 'Restaurant'] },
+                { id: 2, name: 'Jawai Heritage Stay', price: 3500, images: ['https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800'], description: 'Traditional Rajasthani hospitality', amenities: ['AC', 'WiFi', 'Restaurant'] },
+                { id: 3, name: 'Bandh View Cottage', price: 4200, images: ['https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800'], description: 'Peaceful lakeside cottages', amenities: ['AC', 'WiFi', 'Lake View'] }
+            ],
+            safaris: [
+                { id: 1, name: 'Leopard Safari', price: 2500, images: ['https://images.unsplash.com/photo-1549366021-9f761d450615?w=800'], description: 'Early morning leopard tracking', duration: '3 hours' },
+                { id: 2, name: 'Full Day Safari', price: 4500, images: ['https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800'], description: 'Complete wildlife experience', duration: '8 hours' },
+                { id: 3, name: 'Sunset Safari', price: 2000, images: ['https://images.unsplash.com/photo-1535338797473-fc3fe5dd2c8d?w=800'], description: 'Evening wildlife spotting', duration: '2.5 hours' }
+            ],
+            cameramen: [
+                { id: 1, name: 'Professional Wildlife Photographer', price: 3000, images: ['https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800'], description: 'Expert in wildlife photography', experience: '10+ years' },
+                { id: 2, name: 'Wildlife Videographer', price: 3500, images: ['https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800'], description: 'Video documentation specialist', experience: '8+ years' },
+                { id: 3, name: 'Photography Guide', price: 2000, images: ['https://images.unsplash.com/photo-1554080353-a576cf803bda?w=800'], description: 'Help with your own camera', experience: '5+ years' }
+            ],
+            gallery: [
+                'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=800',
+                'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=800',
+                'https://images.unsplash.com/photo-1456926631375-92c8ce872def?w=800',
+                'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=800'
+            ]
+        };
+
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        function showTab(tab) {
+            const content = document.getElementById('mainContent');
+            if (slideInterval) clearInterval(slideInterval);
+
+            if (tab === 'home') {
+                content.innerHTML = getHomeHTML();
+                startSlideshow();
+            } else if (tab === 'hotels') {
+                content.innerHTML = getServicesHTML('hotels', 'Premium Hotels & Resorts', 'Experience luxury in the heart of wilderness');
+            } else if (tab === 'safaris') {
+                content.innerHTML = getServicesHTML('safaris', 'Wildlife Safari Packages', 'Thrilling leopard tracking experiences');
+            } else if (tab === 'cameramen') {
+                content.innerHTML = getServicesHTML('cameramen', 'Professional Photographers', 'Capture your wildlife memories perfectly');
+            } else if (tab === 'gallery') {
+                content.innerHTML = getGalleryHTML();
+            } else if (tab === 'contact') {
+                content.innerHTML = getContactHTML();
+            } else if (tab === 'booking') {
+                content.innerHTML = getBookingHTML();
+            } else if (tab === 'admin') {
+                content.innerHTML = getAdminHTML();
+            }
+        }
+
+        function getHomeHTML() {
+            return `
+                <div class="hero">
+                    ${heroImages.map((img, idx) => `
+                        <div class="hero-slide" style="opacity: ${idx === 0 ? 1 : 0};" data-slide="${idx}">
+                            <img src="${img}" alt="Jawai">
+                            <div class="hero-overlay"></div>
+                        </div>
+                    `).join('')}
+                    <div class="hero-content">
+                        <div class="fade-in">
+                            <h1>Welcome to Jawai Bandh</h1>
+                            <p>Land of Leopards and Wilderness</p>
+                            <p class="subtitle">"Where Nature Meets Adventure"</p>
+                            <button onclick="showTab('safaris')" class="btn-primary">
+                                Explore Safari Packages
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" style="padding:4rem 1rem">
+                    <h2 style="font-size:2.25rem;font-weight:bold;text-align:center;margin-bottom:3rem;color:#1f2937">Why Choose Jawai Bandh?</h2>
+                    <div class="grid grid-3">
+                        <div class="card">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                            <h3>Premium Service</h3>
+                            <p>Luxury stays and professional service</p>
+                        </div>
+                        <div class="card">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                            </svg>
+                            <h3>Best Leopard Sightings</h3>
+                            <p>Highest leopard density in India</p>
+                        </div>
+                        <div class="card">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                            <h3>Safe & Secure</h3>
+                            <p>Experienced guides and safe vehicles</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getServicesHTML(type, title, subtitle) {
+            const items = data[type];
+            return `
+                <div class="container py-12">
+                    <div class="text-center mb-6">
+                        <h2 style="font-size:2.25rem;font-weight:bold;color:#1f2937;margin-bottom:1rem">${title}</h2>
+                        <p style="color:#6b7280;font-size:1.125rem">${subtitle}</p>
+                    </div>
+                    <div class="grid grid-3">
+                        ${items.map(item => {
+                const imageArray = Array.isArray(item.images) ? item.images : [];
+                const mainImage = imageArray[0] || 'https://via.placeholder.com/800';
+                return `
+                            <div class="service-card">
+                                <div class="service-img">
+                                    <img src="${mainImage}" alt="${item.name}">
+                                    <div class="price-tag">₹${item.price}</div>
+                                    ${imageArray.length > 1 ? `<div class="photo-count">+${imageArray.length - 1} photos</div>` : ''}
+                                </div>
+                                <div class="service-content">
+                                    <h3>${item.name}</h3>
+                                    <p>${item.description}</p>
+                                    ${item.amenities ? `<div class="amenities">${item.amenities.map(a => `<span class="amenity-tag">${a}</span>`).join('')}</div>` : ''}
+                                    ${item.duration ? `<p class="info-text">⏱️ ${item.duration}</p>` : ''}
+                                    ${item.experience ? `<p class="info-text">⭐ ${item.experience}</p>` : ''}
+                                    <button onclick="selectService('${item.id}', '${type}')" class="btn-book">Book Now</button>
+                                </div>
+                            </div>
+                        `}).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getGalleryHTML() {
+            return `
+                <div class="container py-12">
+                    <h2 class="text-center mb-6" style="font-size:2.25rem;font-weight:bold;color:#1f2937">Photo Gallery</h2>
+                    <div class="grid grid-3">
+                        ${data.gallery.map((img, idx) => `
+                            <div class="gallery-item">
+                                <img src="${img}" alt="Gallery ${idx + 1}">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getContactHTML() {
+            return `
+                <div class="container py-12">
+                    <h2 class="text-center mb-6" style="font-size:2.25rem;font-weight:bold;color:#1f2937">Contact Us</h2>
+                    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;max-width:900px;margin:0 auto">
+                        <div style="display:flex;flex-direction:column;gap:1.5rem">
+                            <div style="display:flex;gap:1rem">
+                                <span style="font-size:1.5rem">📍</span>
+                                <div>
+                                    <h3 style="font-weight:bold;font-size:1.125rem;margin-bottom:0.25rem">Location</h3>
+                                    <p style="color:#6b7280">Jawai Bandh, District Pali, Rajasthan, India</p>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:1rem">
+                                <span style="font-size:1.5rem">📞</span>
+                                <div>
+                                    <h3 style="font-weight:bold;font-size:1.125rem;margin-bottom:0.25rem">Phone</h3>
+                                    <p style="color:#6b7280">+91 98765 43210</p>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:1rem">
+                                <span style="font-size:1.5rem">✉️</span>
+                                <div>
+                                    <h3 style="font-weight:bold;font-size:1.125rem;margin-bottom:0.25rem">Email</h3>
+                                    <p style="color:#6b7280">info@jawaibandh.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="admin-card">
+                            <h3 style="font-size:1.5rem;font-weight:bold;margin-bottom:1.5rem;color:#1f2937">Send Message</h3>
+                            <div style="display:flex;flex-direction:column;gap:1rem">
+                                <input type="text" id="contactName" placeholder="Name" class="form-input">
+                                <input type="email" id="contactEmail" placeholder="Email" class="form-input">
+                                <textarea id="contactMessage" placeholder="Message" class="form-input" rows="4"></textarea>
+                                <button onclick="sendMessage()" class="btn-primary" style="width:100%;padding:0.75rem">Send Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getBookingHTML() {
+            return `
+                <div class="container py-12" style="max-width:700px">
+                    <h2 class="text-center mb-4" style="font-size:2.25rem;font-weight:bold;color:#1f2937">Book Your Experience</h2>
+                    ${selectedService ? `
+                        <div style="background:#fef3c7;padding:1rem;border-radius:0.5rem;margin-bottom:1.5rem">
+                            <p style="font-weight:bold;font-size:1.125rem">Selected: ${selectedService.name}</p>
+                            <p style="color:#374151">Price: ₹${selectedService.price}</p>
+                        </div>
+                    ` : ''}
+                    <div class="admin-card">
+                        <div class="form-grid">
+                            <input type="text" id="bookingName" placeholder="Full Name" class="form-input">
+                            <input type="email" id="bookingEmail" placeholder="Email" class="form-input">
+                        </div>
+                        <div class="form-grid">
+                            <input type="tel" id="bookingPhone" placeholder="Phone" class="form-input">
+                            <input type="number" id="bookingGuests" placeholder="Guests" value="1" min="1" class="form-input">
+                        </div>
+                        <div class="form-grid">
+                            <div>
+                                <label style="display:block;font-size:0.875rem;margin-bottom:0.25rem;color:#374151">Check-in</label>
+                                <input type="date" id="bookingCheckIn" class="form-input">
+                            </div>
+                            <div>
+                                <label style="display:block;font-size:0.875rem;margin-bottom:0.25rem;color:#374151">Check-out</label>
+                                <input type="date" id="bookingCheckOut" class="form-input">
+                            </div>
+                        </div>
+                        <textarea id="bookingMessage" placeholder="Special Requests" class="form-input" rows="4" style="margin-bottom:1rem"></textarea>
+                        <button onclick="confirmBooking()" class="btn-primary" style="width:100%;padding:0.75rem;font-size:1.125rem">Confirm Booking</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getAdminHTML() {
+            if (!isAdmin) {
+                return `
+                    <div class="container py-12" style="max-width:400px">
+                        <div class="admin-card">
+                            <h2 class="text-center mb-4" style="font-size:1.875rem;font-weight:bold;color:#1f2937">Admin Login</h2>
+                            <input type="password" id="adminPassword" placeholder="Enter Password" class="form-input" style="margin-bottom:1rem">
+                            <button onclick="adminLogin()" class="btn-primary" style="width:100%;padding:0.75rem">Login</button>
+                            <p style="font-size:0.875rem;color:#6b7280;margin-top:1rem;text-align:center">Password: jawai2025</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="container py-12">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
+                        <h2 style="font-size:2.25rem;font-weight:bold;color:#1f2937">Admin Dashboard</h2>
+                        <button onclick="adminLogout()" class="btn-logout">Logout</button>
+                    </div>
+
+                    <div class="admin-grid">
+                        <button onclick="showAdminSection('hotels')" class="admin-btn" style="background:#2563eb">
+                            <div>Manage Hotels</div>
+                            <div style="font-size:0.875rem;margin-top:0.5rem">${data.hotels.length} Hotels</div>
+                        </button>
+                        <button onclick="showAdminSection('safaris')" class="admin-btn" style="background:#059669">
+                            <div>Manage Safaris</div>
+                            <div style="font-size:0.875rem;margin-top:0.5rem">${data.safaris.length} Safaris</div>
+                        </button>
+                        <button onclick="showAdminSection('cameramen')" class="admin-btn" style="background:#7c3aed">
+                            <div>Manage Cameramen</div>
+                            <div style="font-size:0.875rem;margin-top:0.5rem">${data.cameramen.length} Cameramen</div>
+                        </button>
+                    </div>
+
+                    <div id="adminSection"></div>
+                </div>
+            `;
+        }
+
+        function showAdminSection(type) {
+            const section = document.getElementById('adminSection');
+            const items = data[type];
+            const labels = {
+                hotels: { singular: 'Hotel', amenities: true },
+                safaris: { singular: 'Safari', duration: true },
+                cameramen: { singular: 'Cameraman', experience: true }
+            };
+            const label = labels[type];
+
+            section.innerHTML = `
+                <div class="admin-card">
+                    <h3 class="mb-2" style="font-size:1.5rem;font-weight:bold">Add New ${label.singular}</h3>
+                    <div class="form-grid">
+                        <input type="text" id="add_name" placeholder="Name" class="form-input">
+                        <input type="number" id="add_price" placeholder="Price (₹)" class="form-input">
+                    </div>
+                    <textarea id="add_description" placeholder="Description" class="form-input" rows="2" style="margin-bottom:1rem"></textarea>
+                    <div style="margin-bottom:1rem">
+                        <label style="display:block;font-size:0.875rem;font-weight:bold;margin-bottom:0.5rem">Images (one URL per line)</label>
+                        <textarea id="add_images" placeholder="https://example.com/image1.jpg" class="form-input" rows="3"></textarea>
+                    </div>
+                    ${label.amenities ? '<input type="text" id="add_amenities" placeholder="Amenities (comma separated)" class="form-input" style="margin-bottom:1rem">' : ''}
+                    ${label.duration ? '<input type="text" id="add_duration" placeholder="Duration (e.g. 3 hours)" class="form-input" style="margin-bottom:1rem">' : ''}
+                    ${label.experience ? '<input type="text" id="add_experience" placeholder="Experience (e.g. 10+ years)" class="form-input" style="margin-bottom:1rem">' : ''}
+                    <button onclick="addItem('${type}')" style="width:100%;background:#059669;color:white;padding:0.75rem;border:none;border-radius:0.5rem;cursor:pointer;font-weight:bold">Add ${label.singular}</button>
+                </div>
+
+                <div class="admin-card">
+                    <h3 class="mb-2" style="font-size:1.5rem;font-weight:bold">Existing ${label.singular}s</h3>
+                  ${items.map(item => {
+                const imageArray = Array.isArray(item.images) ? item.images : [];
+                const firstImage = imageArray[0] || 'https://via.placeholder.com/120x90?text=No+Image';
+                return `
+    <div class="item-card">
+        <div class="item-header">
+            <div class="item-content">
+                <img src="${firstImage}" alt="${item.name}" class="item-image-preview">
+                <div class="item-info">
+                    <h4 style="font-weight:bold;font-size:1.125rem">${item.name}</h4>
+                    <p style="color:#6b7280;font-size:0.875rem">${item.description}</p>
+                    <p style="color:#d97706;font-weight:bold;margin-top:0.5rem">₹${item.price}</p>
+                    <p style="font-size:0.75rem;color:#6b7280">${imageArray.length} image(s)</p>
+                    ${item.amenities ? `<p style="font-size:0.75rem;color:#6b7280">${item.amenities.join(', ')}</p>` : ''}
+                    ${item.duration ? `<p style="font-size:0.75rem;color:#6b7280">Duration: ${item.duration}</p>` : ''}
+                    ${item.experience ? `<p style="font-size:0.75rem;color:#6b7280">Experience: ${item.experience}</p>` : ''}
+                </div>
+            </div>
+            <div class="item-actions">
+                <button onclick="editItem('${type}', ${item.id})" class="btn-edit">Edit</button>
+                <button onclick="deleteItem('${type}', ${item.id})" class="btn-delete">Delete</button>
+            </div>
+        </div>
+    </div>
+`}).join('')}
+                </div>
+            `;
+        }
+
+        function addItem(type) {
+            const name = document.getElementById('add_name').value;
+            const price = document.getElementById('add_price').value;
+            const description = document.getElementById('add_description').value;
+            const imagesText = document.getElementById('add_images').value;
+            const images = imagesText.split('\n').map(url => url.trim()).filter(url => url);
+
+            if (!name || !price || !description || images.length === 0) {
+                alert('Please fill all fields!');
+                return;
+            }
+
+            const newItem = {
+                id: Date.now(),
+                name, price: parseInt(price), description, images
+            };
+
+            if (type === 'hotels') {
+                const amenities = document.getElementById('add_amenities').value;
+                newItem.amenities = amenities.split(',').map(a => a.trim()).filter(a => a);
+            } else if (type === 'safaris') {
+                newItem.duration = document.getElementById('add_duration').value;
+            } else if (type === 'cameramen') {
+                newItem.experience = document.getElementById('add_experience').value;
+            }
+
+            data[type].push(newItem);
+            alert('✅ Added successfully!');
+            showAdminSection(type);
+        }
+
+        function deleteItem(type, id) {
+            if (!confirm('Delete this item?')) return;
+            data[type] = data[type].filter(item => item.id != id);
+            alert('✅ Deleted!');
+            showAdminSection(type);
+        }
+
+        function editItem(type, id) {
+            const item = data[type].find(i => i.id == id);
+            const imageArray = Array.isArray(item.images) ? item.images : [];
+
+            document.getElementById('add_name').value = item.name;
+            document.getElementById('add_price').value = item.price;
+            document.getElementById('add_description').value = item.description;
+            document.getElementById('add_images').value = imageArray.join('\n');
+
+            if (type === 'hotels') {
+                document.getElementById('add_amenities').value = item.amenities ? item.amenities.join(', ') : '';
+            } else if (type === 'safaris') {
+                document.getElementById('add_duration').value = item.duration || '';
+            } else if (type === 'cameramen') {
+                document.getElementById('add_experience').value = item.experience || '';
+            }
+
+            const section = document.getElementById('adminSection');
+            const btn = section.querySelector('button[onclick*="addItem"]');
+            btn.textContent = 'Update Item';
+            btn.setAttribute('onclick', `updateItem('${type}', ${id})`);
+            btn.style.background = '#2563eb';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateItem(type, id) {
+            const name = document.getElementById('add_name').value;
+            const price = document.getElementById('add_price').value;
+            const description = document.getElementById('add_description').value;
+            const imagesText = document.getElementById('add_images').value;
+            const images = imagesText.split('\n').map(url => url.trim()).filter(url => url);
+
+            if (!name || !price || !description) {
+                alert('Please fill all fields!');
+                return;
+            }
+
+            const idx = data[type].findIndex(i => i.id == id);
+            if (idx === -1) return;
+
+            data[type][idx].name = name;
+            data[type][idx].price = parseInt(price);
+            data[type][idx].description = description;
+            data[type][idx].images = images;
+
+            if (type === 'hotels') {
+                const amenities = document.getElementById('add_amenities').value;
+                data[type][idx].amenities = amenities.split(',').map(a => a.trim()).filter(a => a);
+            } else if (type === 'safaris') {
+                data[type][idx].duration = document.getElementById('add_duration').value;
+            } else if (type === 'cameramen') {
+                data[type][idx].experience = document.getElementById('add_experience').value;
+            }
+
+            alert('✅ Updated!');
+            showAdminSection(type);
+        }
+
+        function selectService(id, type) {
+            selectedService = data[type].find(item => item.id == id);
+            showTab('booking');
+        }
+
+        function confirmBooking() {
+            const name = document.getElementById('bookingName').value;
+            const email = document.getElementById('bookingEmail').value;
+            const phone = document.getElementById('bookingPhone').value;
+            const checkIn = document.getElementById('bookingCheckIn').value;
+            const checkOut = document.getElementById('bookingCheckOut').value;
+
+            if (!name || !email || !phone || !checkIn || !checkOut) {
+                alert('Please fill all required fields!');
+                return;
+            }
+
+            alert('✅ Booking confirmed! We will contact you soon.');
+            selectedService = null;
+            showTab('home');
+        }
+
+        function sendMessage() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill all fields!');
+                return;
+            }
+
+            alert('✅ Message sent!');
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactMessage').value = '';
+        }
+
+        function adminLogin() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === 'jawai2025') {
+                isAdmin = true;
+                showTab('admin');
+            } else {
+                alert('Invalid password!');
+            }
+        }
+
+        function adminLogout() {
+            isAdmin = false;
+            showTab('home');
+        }
+
+        function startSlideshow() {
+            currentSlide = 0;
+            slideInterval = setInterval(() => {
+                const slides = document.querySelectorAll('.hero-slide');
+                if (slides.length > 0) {
+                    slides[currentSlide].style.opacity = '0';
+                    currentSlide = (currentSlide + 1) % heroImages.length;
+                    slides[currentSlide].style.opacity = '1';
+                }
+            }, 5000);
+        }
+
+        // Initialize
+        showTab('home');
+    </script>
+</body>
+
+</html>
